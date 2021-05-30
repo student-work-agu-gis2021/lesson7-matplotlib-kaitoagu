@@ -17,6 +17,11 @@
 # - Parse dates from the column `'DATE'` and set the dates as index in the dataframe 
 
 # YOUR CODE HERE 1 to read the data into data and parse dates
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+fp = "data/helsinki-vantaa.csv"
+data = pd.read_csv(fp, delim_whitespace=True,parse_dates=[0],index_col=0)
 
 # This test print should print first five rows
 print(data.head())
@@ -31,9 +36,10 @@ print(len(data))
 # - Store the selection in a new variable `selection`
 
 # YOUR CODE HERE 2
+selection=data.loc[(data.index>'19871231')&(data.index<'20190101')]
 
 # Check that the data was read in correctly:
-selection.head()
+print(selection.head())
 
 # Check how many rows of data you selected:
 print("Number of rows:", len(selection))
@@ -51,6 +57,13 @@ print("Number of rows:", len(selection))
 # 
 
 # YOUR CODE HERE 3
+#import matplotlib.pyplot as plt
+x=selection['DATE']
+y=selection['TEMP_C']
+selection.plot(x,y)
+plt.title='Helsinki-Vantaa Airport'
+plt.X_label='Time'
+plt.Y_label='Temperature (Celsius)'
 
 # Set output file name
 outputfp = ""
